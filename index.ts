@@ -7,7 +7,7 @@ const app = fastify();
 // Registro do CORS com a origem permitida do frontend
 app.register(cors, {
     origin: 'https://main--wondrous-semifreddo-cfdac0.netlify.app', // Permite a origem do Netlify
-    methods: ['GET', 'POST'], // Métodos permitidos
+    methods: ['GET', 'POST', 'OPTIONS'], // Métodos permitidos
     allowedHeaders: ['Content-Type'], // Adicione outros headers se necessário
 });
 
