@@ -11,3 +11,7 @@ export default async (req, res) => {
     await app.ready(); // Garante que o Fastify está pronto
     app.server.emit('request', req, res); // Delega as requisições para o Fastify
 };
+
+app.get('/', async (request, reply) => {
+    reply.send({ message: 'Welcome to the Fastify backend!' });
+});
