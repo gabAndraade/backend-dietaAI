@@ -4,11 +4,14 @@ import { routes } from './src/routes';
 
 const app = fastify();
 
+// Registro do CORS com a origem permitida do frontend
 app.register(cors, {
-    origin: 'https://main--wondrous-semifreddo-cfdac0.netlify.app', // Permita a origem específica do frontend
-    methods: ['GET', 'POST'], // Métodos que você quer permitir (adicione PUT, DELETE, etc. se necessário)
+    origin: 'https://main--wondrous-semifreddo-cfdac0.netlify.app', // Permite a origem do Netlify
+    methods: ['GET', 'POST'], // Métodos permitidos
+    allowedHeaders: ['Content-Type'], // Adicione outros headers se necessário
 });
 
+// Registro das rotas
 app.register(routes);
 
 export default async (req, res) => {
