@@ -13,7 +13,7 @@ app.setErrorHandler((error, request, reply) => {
 
 // Configuração de CORS
 app.register(cors, {
-    origin: process.env.ALLOWED_ORIGIN || 'https://wondrous-semifreddo-cfdac0.netlify.app',
+    origin: process.env.ALLOWED_ORIGIN || 'https://wondrous-semifreddo-cfdac0.netlify.app/nutrition',
     methods: ['GET', 'POST', 'OPTIONS'],
     allowedHeaders: ['Content-Type'],
 });
