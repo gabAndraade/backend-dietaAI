@@ -12,12 +12,16 @@ app.setErrorHandler((error, request, reply) => {
 })
 
 const start = async () => {
-    app.register(cors);
-    app.register(routes);
+    app.register(cors, {
+        origin: process.env.ALLOWED_ORIGIN || 'https://main--wondrous-semifreddo-cfdac0.netlify.app',
+        methods: ['GET', 'POST', 'OPTIONS'],
+        allowedHeaders: ['Content-Type'],
+    });
+    
 
 
     try{
-        await app.listen({port : 9001, host: "0.0.0.0"})
+        //await app.listen({port : 3333, host: "0.0.0.0"})
         console.log(`Servidor rodando no http://localhost:3333`)
     }catch(err){
         console.log(err);
