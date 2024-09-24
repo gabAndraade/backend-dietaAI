@@ -10,6 +10,7 @@ app.setErrorHandler((error, request, reply) => {
   reply.code(400).send({ message: error.message })
 })
 
+
 const start = async () => {
   app.register(cors, {
     origin: 'https://main--wondrous-semifreddo-cfdac0.netlify.app/nutrition',
@@ -18,6 +19,10 @@ const start = async () => {
   });
   app.register(routes)
 
+  app.post('/nutrition', async (request, reply) => {
+    const data = { message: "Nutrição criada com sucesso" };
+    reply.send(data);
+  });
 
   try{
     await app.listen({ port: 3333, host: "0.0.0.0"})
