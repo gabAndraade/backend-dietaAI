@@ -1,36 +1,31 @@
-import Fastify from "fastify";
-import cors from '@fastify/cors'
-import dotenv from 'dotenv'
-import { routes } from './routes'
+import fastify from 'fastify';
+import cors from '@fastify/cors';
+import dotenv from 'dotenv';
+import { routes } from './routes';
 
-const app = Fastify({ logger: true })
+const app = fastify({ logger: true });
 dotenv.config();
 
 app.setErrorHandler((error, request, reply) => {
-  reply.code(400).send({ message: error.message })
-})
+    reply.code(400).send({ message: error.message });
+});
 
+// Configuração do CORS para permitir a origem do frontend
+app.register(cors, {
+    origin: ['https://wondrous-semifreddo-cfdac0.netlify.app'], // Aqui você define o frontend
+    methods: ['GET', 'POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type'],
+});
+
+app.register(routes);
 
 const start = async () => {
-  app.register(cors, {
-    origin: 'https://main--wondrous-semifreddo-cfdac0.netlify.app/nutrition',
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos permitidos
-    allowedHeaders: ['Content-Type', 'Authorization'], // Cabeçalhos permitidos
-  });
-  app.register(routes)
-
-  app.post('/nutrition', async (request, reply) => {
-    const data = { message: "Nutrição criada com sucesso" };
-    reply.send(data);
-  });
-
-  try{
-    await app.listen({ port: 3333, host: "0.0.0.0"})
-    console.log(`Servidor rodando no http://localhost:3333`)
-  }catch(err){
-    console.log(err);
-  }
-
-}
+    try {
+        await app.listen({ port: 3333, host: '0.0.0.0' });
+        console.log(`Servidor rodando no http://localhost:3333`);
+    } catch (err) {
+        console.log(err);
+    }
+};
 
 start();
