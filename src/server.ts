@@ -12,10 +12,10 @@ app.setErrorHandler((error, request, reply) => {
 });
 
 // Configuração de CORS
-app.register(cors, {
-    origin: process.env.ALLOWED_ORIGIN || 'https://main--wondrous-semifreddo-cfdac0.netlify.app/nutrition',
-    methods: ['GET', 'POST', 'OPTIONS'],
-    allowedHeaders: ['Content-Type'],
+app.register(require('@fastify/cors'), {
+  origin: process.env.ALLOWED_ORIGIN || 'https://main--wondrous-semifreddo-cfdac0.netlify.app/nutrition',
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type'],
 });
 
 // ** Adicione o handler para as requisições preflight (OPTIONS) aqui **
