@@ -12,7 +12,7 @@ app.setErrorHandler((error, request, reply) => {
 
 // Configuração do CORS para permitir a origem do frontend
 app.register(cors, {
-    origin: ['https://wondrous-semifreddo-cfdac0.netlify.app'], // Aqui você define o frontend
+  origin: process.env.ALLOWED_ORIGIN || 'https://wondrous-semifreddo-cfdac0.netlify.app',
     methods: ['GET', 'POST', 'OPTIONS'],
     allowedHeaders: ['Content-Type'],
 });
