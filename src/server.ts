@@ -12,7 +12,7 @@ app.setErrorHandler((error, request, reply) => {
 
 const start = async () => {
   app.register(cors, {
-    origin: 'https://main--wondrous-semifreddo-cfdac0.netlify.app',
+    origin: 'https://main--wondrous-semifreddo-cfdac0.netlify.app/nutrition',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos permitidos
     allowedHeaders: ['Content-Type', 'Authorization'], // Cabeçalhos permitidos
   });
