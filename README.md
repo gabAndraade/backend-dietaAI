@@ -12,6 +12,7 @@ Backend da aplicação DietaAI, responsável por prover a API que o front-end co
 ## Estrutura
 
 📁 O que tem no arquivo server.ts
+
 	•	Criação da instância do Fastify com logger: true  ￼
 	•	Configuração das variáveis de ambiente com dotenv.config()  ￼
 	•	Tratador de erro customizado: todas as exceções serão convertidas em resposta com código 400 e um JSON { message: error.message }  ￼
