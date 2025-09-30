@@ -3,6 +3,7 @@
 Backend da aplicação DietaAI, responsável por prover a API que o front-end consumirá (cadastros, geração de dieta, etc.).
 
 🛠 Tecnologias utilizadas
+
 	•	Node.js + TypeScript
 	•	Fastify (framework de servidor HTTP)  ￼
 	•	@fastify/cors para permitir requisições de front-end (CORS)  ￼
