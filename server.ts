@@ -11,13 +11,14 @@ app.setErrorHandler((error, request, reply) => {
 })
 
 const start = async () => {
-  app.register(cors,{
-    origin: 'https://wondrous-semifreddo-cfdac0.netlify.app',
-    methods: ['GET', 'POST'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+  app.register(cors, {
+  origin: 'https://wondrous-semifreddo-cfdac0.netlify.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
+});
 
-  });
-  app.register(routes)
+app.register(routes);
+
 
 
   try{
@@ -28,5 +29,6 @@ const start = async () => {
   }
 
 }
+
 
 start();
