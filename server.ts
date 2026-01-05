@@ -6,13 +6,12 @@ import { routes } from './routes'
 const app = Fastify({ logger: true })
 dotenv.config();
 
-// ❌ Removido o setErrorHandler que devolvia sempre 400
-
 const start = async () => {
+  // Configuração mais aberta para teste
   app.register(cors, {
-    origin: 'https://wondrous-semifreddo-cfdac0.netlify.app',
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['*'], // mais seguro para testes
+    origin: true, // permite qualquer origem
+    methods: ['*'], // permite todos os métodos
+    allowedHeaders: ['*'], // permite todos os headers
   });
 
   app.register(routes);
