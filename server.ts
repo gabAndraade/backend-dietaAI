@@ -8,6 +8,7 @@ dotenv.config();
 
 const app = Fastify({ logger: true });
 
+
 app.register(cors, {
   origin: "https://wondrous-semifreddo-cfdac0.netlify.app",
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
