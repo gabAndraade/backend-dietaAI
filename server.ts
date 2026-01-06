@@ -9,9 +9,9 @@ dotenv.config();
 const start = async () => {
   // Configuração mais aberta para teste
   app.register(cors, {
-    origin: true, // permite qualquer origem
-    methods: ['*'], // permite todos os métodos
-    allowedHeaders: ['*'], // permite todos os headers
+    origin: true,
+    methods: ['*'],
+    allowedHeaders: ['*'],
   });
 
   app.register(routes);
@@ -25,3 +25,4 @@ const start = async () => {
 }
 
 start();
+
