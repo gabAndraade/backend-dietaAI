@@ -1,4 +1,3 @@
-// server.ts
 import Fastify from "fastify";
 import cors from "@fastify/cors";
 import dotenv from "dotenv";
@@ -8,23 +7,43 @@ dotenv.config();
 
 const app = Fastify({ logger: true });
 
-// CORS primeiro
 app.register(cors, {
   origin: "https://wondrous-semifreddo-cfdac0.netlify.app",
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["*"], // libera todos os headers
+  allowedHeaders: ["Content-Type", "Authorization", "Accept"],
+  credentials: true,
+  strictPreflight: false,
+  preflight: true,
 });
 
-// Rotas depois
 app.register(routes);
 
-// Export para Vercel (serverless)
 export default async function handler(req: any, res: any) {
   await app.ready();
-  app.server.emit("request", req, res);
+
+  app.inject(
+    {
+      method: req.method,
+      url: req.url,
+      headers: req.headers,
+      payload: req.body,
+    },
+    (err, response) => {
+      if (err) {
+        res.statusCode = 500;
+        res.end(err.message);
+        return;
+      }
+      res.statusCode = response.statusCode;
+      Object.entries(response.headers).forEach(([key, value]) => {
+        res.setHeader(key, value as string);
+      });
+      res.end(response.body);
+    }
+  );
 }
 
-// Start local (apenas fora do Vercel)
+// Start local
 if (process.env.NODE_ENV !== "production") {
   const start = async () => {
     try {
