@@ -9,17 +9,6 @@
   "routes": [
     {
       "src": "/(.*)",
-      "methods": ["OPTIONS"],
-      "headers": {
-        "Access-Control-Allow-Origin": "https://wondrous-semifreddo-cfdac0.netlify.app",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization, Accept",
-        "Access-Control-Max-Age": "86400"
-      },
-      "dest": "src/server.ts"
-    },
-    {
-      "src": "/(.*)",
       "dest": "src/server.ts"
     }
   ]
