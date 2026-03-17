@@ -21,6 +21,17 @@ app.register(routes);
 export default async function handler(req: any, res: any) {
   await app.ready();
 
+  res.setHeader("Access-Control-Allow-Origin", "https://wondrous-semifreddo-cfdac0.netlify.app");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, Accept");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+
+  if (req.method === "OPTIONS") {
+    res.statusCode = 204;
+    res.end();
+    return;
+  }
+
   app.inject(
     {
       method: req.method,
