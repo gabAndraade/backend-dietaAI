@@ -19,6 +19,10 @@ app.register(cors, {
 app.register(routes);
 
 export default async function handler(req: any, res: any) {
+  console.log("METHOD:", req.method);
+  console.log("URL:", req.url);
+  console.log("HEADERS:", req.headers);
+
   await app.ready();
 
   res.setHeader("Access-Control-Allow-Origin", "https://wondrous-semifreddo-cfdac0.netlify.app");
