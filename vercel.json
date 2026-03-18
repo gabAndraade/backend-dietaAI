@@ -13,7 +13,7 @@
     }
   ],
   "functions": {
-    "src/server.ts": {
+    "api/**/*.js": {
       "maxDuration": 30
     }
   }
